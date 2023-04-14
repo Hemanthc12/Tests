@@ -13,7 +13,7 @@ pipeline {
         stages {
             stage('Git Checkout') {
                     steps {
-                        git branch: “${perams.branchname}”, credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
+                        git branch: “${params.branchname}”, credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
                     }
                 }
 
