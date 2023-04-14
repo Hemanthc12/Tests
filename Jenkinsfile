@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	environment {
-  	TP = "172.31.35.105"
+  	TP = "18.218.189.208"
   	TU = "ec2-user"
 	}
 
