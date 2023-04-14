@@ -17,7 +17,7 @@ pipeline {
             stage('Git Checkout') {
                     when{
                         expression{
-                            params.branchName == "develop"
+                            params.branchName == "master"
                         }
                     steps {
                         git branch: "${params.BN}", credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
