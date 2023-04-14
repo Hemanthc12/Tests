@@ -1,21 +1,29 @@
 pipeline {
     agent any
 
+
     parameters {
         string defaultValue: 'main', description: 'chose the branch', name: 'BN'
         }
+
 
         environment {
             TP = "172.31.35.105"
             TU = "ec2-user"
             }
 
+
         stages {
             stage('Git Checkout') {
+                    when{
+                        expression{
+                            params.branchName == "develop"
+                        }
                     steps {
                         git branch: "${params.BN}", credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
                     }
                 }
+
 
             stage('Maven Build') {
                  steps {
@@ -34,11 +42,12 @@ pipeline {
             }
          post {
             success {
-                echo 'build is succesfull'
+                echo 'build is successful'
             }
             failure {
                 echo 'build is failed'
             }
         }
+
 
 }
