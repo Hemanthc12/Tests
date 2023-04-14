@@ -20,6 +20,12 @@ pipeline {
                   sh "ssh $TU@$TP /opt/tomcat9/bin/startup.sh"
               }
             }
+		
         }
+    }
+	post {
+  	failure {
+    echo "Job failed, sending failuer email".
+  	}
     }
 }
