@@ -9,6 +9,13 @@ pipeline {
 }
 
     stages {
+  stages {
+	 stage('Git Checkout') {
+            steps {
+                git branch: “${perams.branchname}”, credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
+            }
+        }
+
  stage('Maven Build') {
                     steps {
                 sh 'mvn clean package'
