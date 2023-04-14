@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string defaultValue: 'main', description: 'chose the branch', name: 'BN'
+        }
+
         environment {
             TP = "172.31.35.105"
             TU = "ec2-user"
@@ -9,7 +13,7 @@ pipeline {
         stages {
             stage('Git Checkout') {
                     steps {
-                        git branch: 'main', credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
+                        git branch: "${params.BN}", credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
                     }
                 }
 
