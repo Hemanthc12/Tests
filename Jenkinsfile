@@ -11,17 +11,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        stage("Dev Deploy"){
-            steps{
-              sshagent(['tocat-dev']) {
-                  // copy war file into tomcat sever
-                  sh "scp -o StrictHostKeyChecking=no target/*.war $TU@$TP:/opt/tomcat9/webapps/"
-                  sh "ssh $TU@$TP /opt/tomcat9/bin/shutdown.sh"
-                  sh "ssh $TU@$TP /opt/tomcat9/bin/startup.sh"
-              }
-            }
-		
-        }
+        
     }
 	post {
   	failure {
