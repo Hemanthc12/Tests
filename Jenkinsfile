@@ -8,7 +8,7 @@ pipeline {
   string defaultValue: 'main', description: 'chose the branch to deploy', name: 'branchname'
 }
 
-    stages {
+    
   stages {
 	 stage('Git Checkout') {
             steps {
@@ -31,4 +31,12 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            echo 'build is succesfull'
+        }
+        failure {
+            echo 'build is failed'
+        }
+        }
 }
