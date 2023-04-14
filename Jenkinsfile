@@ -1,5 +1,9 @@
 pipeline {
     agent any
+	environment {
+  	TP = "172.31.41.0"
+  	TU = "ec2-user"
+	}
 
     stages {
         stage('Maven Build') {
@@ -11,12 +15,11 @@ pipeline {
             steps{
               sshagent(['tocat-dev']) {
                   // copy war file into tomcat sever
-                  sh "scp -o StrictHostKeyChecking=no target/*.war ec2-user@172.31.41.0:/opt/tomcat9/webapps/"
-                  sh "ssh ec2-user@172.31.41.0 /opt/tomcat9/bin/shutdown.sh"
-                  sh "ssh ec2-user@172.31.41.0 /opt/tomcat9/bin/startup.sh"
+                  sh "scp -o StrictHostKeyChecking=no target/*.war $TU@$TP:/opt/tomcat9/webapps/"
+                  sh "ssh $TU@$TP /opt/tomcat9/bin/shutdown.sh"
+                  sh "ssh $TU@$TP /opt/tomcat9/bin/startup.sh"
               }
             }
         }
     }
 }
-
