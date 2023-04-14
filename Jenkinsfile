@@ -17,7 +17,7 @@ pipeline {
             stage('Git Checkout') {
                 when{
                     expression{
-                        params.branchName == "develop"
+                        params.branchName == "master"
                     }
             }    
                     steps {
