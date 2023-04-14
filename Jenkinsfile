@@ -6,14 +6,10 @@ pipeline {
             TU = "ec2-user"
             }
 
-        parameters {
-            string defaultValue: 'main', description: 'chose the branch to deploy', name: 'branchname'
-                    }
-
         stages {
             stage('Git Checkout') {
                     steps {
-                        git branch: “${params.branchname}”, credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
+                        git branch: 'main', credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
                     }
                 }
 
