@@ -1,7 +1,7 @@
 pipeline {
     agent any
 	environment {
-  	TP = "18.218.189.208"
+  	TP = "172.31.35.105"
   	TU = "ec2-user"
 	}
 
@@ -13,8 +13,7 @@ pipeline {
         }
         stage("Dev Deploy"){
             steps{
-              sshagent(['tocat-dev']) {
-                  // copy war file into tomcat sever
+              sshagent(['deploy1']) {
                   sh "scp -o StrictHostKeyChecking=no target/*.war $TU@$TP:/opt/tomcat9/webapps/"
                   sh "ssh $TU@$TP /opt/tomcat9/bin/shutdown.sh"
                   sh "ssh $TU@$TP /opt/tomcat9/bin/startup.sh"
