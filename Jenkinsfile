@@ -9,14 +9,8 @@ pipeline {
 }
 
     stages {
-	 stage('Git Checkout') {
-            steps {
-               Git branch : “${params.branchname}”, credentialsId: 'github', url: 'https://github.com/Hemanthc12/Tests.git'
-            }
-        }
-
-        stage('Maven Build') {
-            steps {
+ stage('Maven Build') {
+                    steps {
                 sh 'mvn clean package'
             }
         }
